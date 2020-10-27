@@ -1,16 +1,177 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-button (click)="onCancel()"><ion-icon name="close"></ion-icon></ion-button>
-    </ion-buttons>
-    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{currentPage}}</ion-title>
-  </ion-toolbar>
+<!--Header-->
+<ion-header no-shadow no-border class="header">
+  <div *ngIf="this.currentPage=='resetpas'">
+    <header>
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="9">
+              <h1>Forgot Password</h1>
+            </ion-col>
+            <ion-col size="3">
+              <ion-button (click)="onShowLogin()" mode='ios' color="danger">
+                <ion-icon name="close"></ion-icon>
+                CLOSE
+
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </header>
+  </div>
+  <div *ngIf="this.currentPage=='login'">
+    <header>
+      <h1>LOGIN</h1>
+    </header>
+  </div>
+  <div *ngIf="this.currentPage=='register'">
+    <header>
+      <h1>SIGNUP</h1>
+    </header>
+  </div>
 </ion-header>
 
+<ion-content>
+  <div *ngIf="this.currentPage=='login'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="10" size-sm="10" size-md="7" size-lg="8" size-xl="8" offset="1" offset-lg="2" offset-md="2">
+          <div style="margin-top: 5em;">
 
-<ion-content >
-  page
-  <ion-list class="listContent" *ngIf="currentPage==LOGIN_PAGE">
+            <ion-label style="font-weight:bold;">Welcome,Login to continue</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-icon slot="start" name="mail-open"></ion-icon>
+                <ion-input placeholder="Enter your email" type="email"></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <ion-list class="line-input">
+              <ion-item class="i2" no-lines>
+
+                <ion-icon slot="start" name="unlock"></ion-icon>
+                <ion-input placeholder="Enter password" type="{{type}}" name="password" no-lines> </ion-input>
+                <ion-icon slot="end" *ngIf="!showPass" fill="clear" type="button" item-right (click)="showPassword()"
+                  name="eye" style="font-size: 25px;"></ion-icon>
+                <ion-icon slot="end" *ngIf="showPass" fill="clear" type="button" item-right (click)="showPassword()"
+                  name="eye-off" style="font-size: 25px;"></ion-icon>
+              </ion-item>
+            </ion-list>
+            <div style="display: flex; align-content: center; align-items: center; justify-content: center;">
+              <ion-button outline fill="clear" (click)="onShowForgotPassword()">Forgot Password</ion-button>
+            </div>
+            <ion-button mode='ios' color="none"
+              style="border-radius:50px;background-image: linear-gradient(#00BFFF, #87CEEB);" shape="round" fill="solid"
+              size="large" expand="block">LOGIN
+              <ion-icon name="arrow-forward"></ion-icon>
+            </ion-button>
+            <div
+              style="padding-bottom: 1.5em;display: flex; align-content: center; align-items: center; justify-content: center;">
+              <ion-button (click)="onShowRegister()" fill="clear" class="ion-text-center">Dont't have an
+                account-Register? </ion-button>
+            </div>
+
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="this.currentPage=='register'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="10" size-sm="10" size-md="7" size-lg="8" size-xl="8" offset="1" offset-lg="2" offset-md="2">
+          <div style="margin-top: 5em;">
+
+            <ion-label style="font-weight:bold;">Welcome,SIGNUP to continue</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+
+                <ion-input placeholder="Enter your Name" type="text"></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <ion-list class="line-input">
+              <ion-item>
+
+                <ion-input placeholder="Enter your email" type="email"></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <ion-list class="line-input">
+              <ion-item>
+
+                <ion-input placeholder="Enter your phone" type="number"></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <ion-list class="line-input">
+              <ion-item>
+
+                <ion-input placeholder="Enter your User name" type="text"></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <ion-list class="line-input">
+              <ion-item class="i2" no-lines>
+
+                >
+                <ion-input placeholder="Enter password" type="{{type}}" name="password" no-lines> </ion-input>
+                <ion-icon slot="end" *ngIf="!showPass" fill="clear" type="button" item-right (click)="showPassword()"
+                  name="eye" style="font-size: 25px;"></ion-icon>
+                <ion-icon slot="end" *ngIf="showPass" fill="clear" type="button" item-right (click)="showPassword()"
+                  name="eye-off" style="font-size: 25px;"></ion-icon>
+              </ion-item>
+            </ion-list>
+
+            <ion-button mode='ios' color="none"
+              style="padding-top: 0.5em;border-radius:50px;background-image: linear-gradient(#00BFFF, #87CEEB);"
+              shape="round" fill="solid" size="large" expand="block">REGISTER
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+            <div
+              style="top: 0.5em;padding-bottom: 1.5em;display: flex; align-content: center; align-items: center; justify-content: center;">
+              <ion-button (click)="onShowLogin()" fill="clear" class="ion-text-center">Already have an Account?
+                SIGNIN </ion-button>
+            </div>
+
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="this.currentPage=='resetpas'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="10" size-sm="10" size-md="7" size-lg="8" size-xl="8" offset="1" offset-lg="2" offset-md="2">
+          <div>
+            <ion-label style="margin-top:1em ;">ENTER EMAIL TO CONTINUE</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-icon slot="start" name="mail-open"></ion-icon>
+                <ion-input placeholder="Enter your email" type="email"></ion-input>
+              </ion-item>
+            </ion-list>
+
+          </div>
+          <div style="position: relative;top: 27em;">
+            <ion-button mode='ios' color="none"
+              style="padding-top: 0.5em;border-radius:50px;background-image: linear-gradient(#00BFFF, #87CEEB);"
+              shape="round" fill="solid" size="large" expand="block">CONTINUE
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <!--  <ion-list class="listContent" *ngIf="currentPage==LOGIN_PAGE">
     <ion-item>
       <ion-label position="stacked">{{translateUtil.translateKey('EMAIL')}}</ion-label>
       <ion-input type="email"
@@ -112,7 +273,7 @@
     </form>
   </ion-list>
 
-  <!--Forgot password page-->
+
   <ion-list class="listContent" *ngIf="currentPage==RESET_PAGE">
     <form #formRef="ngForm" (ngSubmit)="onReset(formRef)">
       <ion-item>
@@ -137,7 +298,5 @@
     <ion-button size="small" expand="block" (click)="onCancel()">{{translateUtil.translateKey('CANCEL')}}</ion-button>
   </ion-list>
 
-  <div class="scroll-content"></div>
+  <div class="scroll-content"></div> -->
 </ion-content>
-
-
