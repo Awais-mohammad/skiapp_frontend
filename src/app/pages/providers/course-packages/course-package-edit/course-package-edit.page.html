@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{translateUtil.translateKey('Program Edit Page')}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="listContent" class="listContent" *ngIf="coursePackage" #formRef="ngForm" (ngSubmit)="onSaveCoursePackage(formRef)">
+    <ion-item>
+      <ion-label position="stacked">{{translateUtil.translateKey('Name')}}<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="text"
+                 [(ngModel)]="coursePackage.name"
+                 name="name"
+                 #nameRef="ngModel"
+                 maxlength="200"
+                 required>
+      </ion-input>
+    </ion-item>
+    <ion-item *ngIf="nameRef.errors?.required && submitted" lines="none">
+      <ion-label color="danger" >{{translateUtil.translateKey('Name required')}}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="nameRef.errors?.maxlength" lines="none">
+      <ion-label color="danger" text-wrap>{{translateUtil.translateKey('Name')}} {{translateUtil.translateKey('MAX_200')}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{translateUtil.translateKey('Description')}}</ion-label>
+      <ion-textarea class="medium" [(ngModel)]="coursePackage.description"  name="description"
+                    #descriptionRef="ngModel" maxlength="1000" ></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="descriptionRef.errors?.maxlength">
+      <ion-label color="danger" text-wrap>{{translateUtil.translateKey('MAX_1000')}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label >{{translateUtil.translateKey('Allow selecting course')}}</ion-label>
+      <ion-toggle name="allowCourseSelection" [(ngModel)]="coursePackage.allowCourseSelection"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label >{{translateUtil.translateKey('Enabled')}}</ion-label>
+      <ion-toggle name="enabled" [(ngModel)]="coursePackage.enabled"></ion-toggle>
+    </ion-item>
+  </form>
+
+  <div class="scroll-content"></div>
+
+  <!--Fav buttons -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="orange" (click)="openMenu()">
+      {{translateUtil.translateKey("Menu")}}
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

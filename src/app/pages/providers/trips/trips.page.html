@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{translateUtil.translateKey('Upcoming Trips')}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let trip of trips">
+    <ion-card-header>
+      <ion-card-title>{{trip?.title}}</ion-card-title>
+      <ion-card-subtitle *ngIf="trip?.tripHillName">Organized Trip Destination: {{trip?.tripHillName}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p *ngIf="trip?.time">Date: {{utils.formatDateOnlyWithWeek(trip?.time)}}</p>
+      <p *ngIf="trip?.deadLine">Registration deadline: {{utils.formatDate(trip?.deadLine)}}</p>
+      <p *ngIf="showAdminFunction()"><ion-text color="orange">Total: {{getTotalTicketCount(trip)}}</ion-text></p>
+      <p *ngIf="showAdminFunction()"><ion-text color="orange">Enabled: {{utils.getYesNo(trip?.enabled)}}</ion-text></p>
+    </ion-card-content>
+    <ion-item>
+      <ion-button slot="start" size="small" (click)="onViewDetails(trip)"> {{translateUtil.translateKey('Trip Details')}}</ion-button>
+      <ion-button slot="start" size="small" (click)="showChooseCoursePopup(trip)"> {{translateUtil.translateKey('Lessons')}}</ion-button>
+    </ion-item>
+  </ion-card>
+  <div class="scroll-content"></div>
+
+  <!--Fav buttons -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="orange" (click)="openMenu()">
+      {{translateUtil.translateKey("Menu")}}
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

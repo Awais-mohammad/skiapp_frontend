@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{translateUtil.translateKey('Package Registrations')}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let registration of packageRegistrations" (click)="onViewDetails(registration)">
+    <div>
+      <ion-row align-items-center>
+        <ion-col class="eventsCol">
+          <ion-row *ngIf="showAllDetails">
+            <ion-col class="eventsCol">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Club/School Name')}}</p>
+              <ion-text no-margin>{{registration?.providerName}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="eventsCol">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Title')}}</p>
+              <ion-text no-margin [innerHtml]="utils.highlightSearch(registration?.title, searchKey)"></ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="showAllDetails">
+            <ion-col class="eventsCol">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Class Type')}}</p>
+              <ion-text no-margin>{{registration?.providerCourseTypeName}}</ion-text>
+            </ion-col>
+            <ion-col class="eventsCol">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Assigned Program?')}}</p>
+              <ion-text no-margin [ngClass]="{'danger' : !registration?.courseId}">{{utils.getYesNo(registration?.courseId)}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="showAllDetails && registration?.courseName">
+            <ion-col class="eventsCol">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Program Name')}}</p>
+              <ion-text no-margin [innerHtml]="utils.highlightSearch(registration?.courseName, searchKey)"></ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="registration?.instructorName">
+            <ion-col class="eventsCol">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Instructor Name')}}</p>
+              <ion-text no-margin [innerHtml]="utils.highlightSearch(registration?.instructorName, searchKey)"></ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="registration?.registerName">
+            <ion-col class="eventsCol">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Register user name')}}</p>
+              <ion-text no-margin [innerHtml]="utils.highlightSearch(registration?.registerName, searchKey)"></ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="registration?.contactName">
+            <ion-col class="eventsCol">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Guest Name')}}</p>
+              <ion-text no-margin [innerHtml]="utils.highlightSearch(registration?.contactName, searchKey)"></ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col *ngIf="registration?.userEmail" class="eventsCol" >
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('User email')}}</p>
+              <ion-text no-margin>{{registration?.userEmail}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col *ngIf="registration?.email" class="eventsCol" >
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Guest email')}}</p>
+              <ion-text no-margin>{{registration?.email}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col *ngIf="showAllDetails" class="eventsCol" >
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Paymant Status')}}</p>
+              <ion-text no-margin>{{registration?.paymentStatusName}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="eventsCol" *ngIf="showAllDetails">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('Registration Date')}}</p>
+              <ion-text no-margin>{{utils.formatDate(registration?.createdDate)}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col *ngIf="showAllDetails" class="eventsCol">
+              <p no-margin class="fieldLabel">{{translateUtil.translateKey('TripHill')}}</p>
+              <ion-text no-margin [innerHtml]="utils.highlightSearch(registration?.tripHillName, searchKey)"></ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-item>
+
+  <div class="scroll-content"></div>
+  <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">-->
+  <!--<ion-infinite-scroll-content></ion-infinite-scroll-content>-->
+  <!--</ion-infinite-scroll>-->
+
+  <!--Fav buttons -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="orange" (click)="openMenu()">
+      {{translateUtil.translateKey("Menu")}}
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

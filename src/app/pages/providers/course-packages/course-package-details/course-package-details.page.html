@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{translateUtil.translateKey('Course Package Details')}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="coursePackage" class="listContent">
+    <ion-list-header color="secondary" class="listHeader">
+      {{(coursePackage)?.name}}
+    </ion-list-header>
+    <ion-item *ngIf="coursePackage?.description">
+      <ion-label text-wrap>
+        <ion-text>
+          <h2 padding-bottom class="fieldLabel">{{translateUtil.translateKey('Description')}}</h2>
+        </ion-text>
+        <ion-text text-wrap>{{(coursePackage)?.description}}</ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="appSession.l_isSiteAdmin() || appSession.l_isAdministrator(providerId)">
+      <ion-label>
+        <ion-text>
+          <h2 padding-bottom class="fieldLabel">{{translateUtil.translateKey('Allow Select Course')}}</h2>
+        </ion-text>
+        <ion-text>{{utils.getYesNo((coursePackage)?.allowCourseSelection)}}</ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="appSession.l_isSiteAdmin() || appSession.l_isAdministrator(providerId)">
+      <ion-label>
+        <ion-text>
+          <h2 padding-bottom class="fieldLabel">{{translateUtil.translateKey('Enabled')}}</h2>
+        </ion-text>
+        <ion-text>{{utils.getYesNo((coursePackage)?.enabled)}}</ion-text>
+      </ion-label>
+    </ion-item>
+
+    <!--courses-->
+    <ion-list-header color="secondary" class="listHeader">
+      {{translateUtil.translateKey('Courses')}}
+    </ion-list-header>
+    <div>
+      <ion-item *ngFor="let course of coursePackage?.courses">
+        <ion-label padding-bottom (click)="onViewCourse(course)">
+          <ion-text>
+            <h2 *ngIf="course.name" class="fieldLabel">{{course.name}}</h2>
+          </ion-text>
+        </ion-label>
+        <ion-button *ngIf="appSession.l_isSiteAdmin() || appSession.l_isAdministrator(providerId)" slot="start" (click)="onDeleteCourse(course)"><ion-icon name="trash"></ion-icon></ion-button>
+      </ion-item>
+    </div>
+    <ion-button *ngIf="appSession.l_isSiteAdmin() || appSession.l_isAdministrator(providerId)" size="small" expand="block" (click)="onAddCourse()">+</ion-button>
+
+  </ion-list>
+
+  <div class="scroll-content"></div>
+
+  <!--Fav buttons -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="orange" (click)="openMenu()">
+      {{translateUtil.translateKey("Menu")}}
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

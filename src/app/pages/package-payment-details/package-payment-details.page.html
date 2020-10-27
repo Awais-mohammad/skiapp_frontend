@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{translateUtil.translateKey('Package Payment details')}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="listContent">
+    <ion-list-header>
+      {{packageInvoice?.name}}
+    </ion-list-header>
+    <ion-item>
+      <ion-label>
+        <ion-text>
+          <h2 padding-bottom class="fieldLabel">{{translateUtil.translateKey('Package Invoice Id')}}</h2>
+        </ion-text>
+        <ion-text>{{packageInvoice?.id}}</ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text>
+          <h2 padding-bottom class="fieldLabel">{{translateUtil.translateKey('Total')}}</h2>
+        </ion-text>
+        <ion-text>{{packageInvoice?.total}}</ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="packageInvoice?.invoiceDate">
+      <ion-label>
+        <ion-text>
+          <h2 padding-bottom class="fieldLabel">{{translateUtil.translateKey('Invoice Date')}}</h2>
+        </ion-text>
+        <ion-text>{{utils.formatDateShort(packageInvoice?.invoiceDate)}}</ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="packageInvoice?.notes" text-wrap>
+      <ion-label>
+        <ion-text>
+          <h2 padding-bottom class="fieldLabel">{{translateUtil.translateKey('Invoice Date')}}</h2>
+        </ion-text>
+        <ion-text>{{packageInvoice?.notes}}</ion-text>
+      </ion-label>
+    </ion-item>
+
+    <div *ngFor="let courseInvoice of packageInvoice?.courseRegistrationInvoices">
+      <ion-item>
+        <ion-label>
+          <ion-text>
+            <h2 padding-bottom class="fieldLabel">{{translateUtil.translateKey('Course Invoice id')}}</h2>
+          </ion-text>
+          <ion-text>{{courseInvoice?.id}}</ion-text>
+        </ion-label>
+      </ion-item>
+      <ion-item >
+        <ion-label>
+          <ion-text>
+            <h2 padding-bottom class="fieldLabel">{{translateUtil.translateKey('Amount')}}</h2>
+          </ion-text>
+          <ion-text>${{courseInvoice?.amount}}</ion-text>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+  <div id="dropin-container"></div>
+  <ion-button expand="block" type="button" id="payOnline-button" [disabled]="notReady" *ngIf="payOnline" >{{translateUtil.translateKey('Pay Online')}}</ion-button>
+  <ion-button expand="block" type="button" id="payOffline-button" [disabled]="initialBrainTree" *ngIf="payOffline" (click)="onPayOffline()">{{translateUtil.translateKey('Pay Offline')}}</ion-button>
+  <ion-button expand="block" type="button" id="ok-button" (click)="onClose()">{{translateUtil.translateKey('Close')}}</ion-button>
+  <div class="scroll-content"></div>
+
+  <!--Fav buttons -->
+  <!--Fav buttons -->
+  <!--<ion-fab vertical="bottom" horizontal="end" slot="fixed">-->
+  <!--<ion-fab-button color="orange" (click)="openMenu()">-->
+  <!--{{translateUtil.translateKey("Menu")}}-->
+  <!--</ion-fab-button>-->
+  <!--</ion-fab>-->
+</ion-content>

@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Test Payment Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list-header>Payment dropin</ion-list-header>
+  <div id="dropin-container"></div>
+  <ion-button expand="block" type="button" id="payOnline-button" [disabled]="notReady">{{translateUtil.translateKey('Pay Online')}}</ion-button>
+  <ion-button expand="block" type="button" id="payOffline-button" (click)="onPayOffline()">{{translateUtil.translateKey('Pay Offline')}}</ion-button>
+  <ion-button expand="block" type="button" id="ok-button" (click)="onClose()">{{translateUtil.translateKey('Close')}}</ion-button>
+  <div class="scroll-content"></div>
+</ion-content>
