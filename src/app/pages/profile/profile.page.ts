@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {BasicUserIdPage} from '../BasicUserIdPage';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BasicUserIdPage } from '../BasicUserIdPage';
 import {
   ActionSheetController,
   AlertController,
@@ -8,17 +8,17 @@ import {
   NavController,
   Platform
 } from '@ionic/angular';
-import {Utils} from '../../services/utils.service';
-import {AppSession} from '../../services/app-session.service';
-import {TranslateUtil} from '../../services/translate-util.service';
-import {ToastUtil} from '../../services/toast-util.service';
-import {AppConstants} from '../../services/app-constants.service';
-import {ProvidersService} from '../../services/providers-service.service';
-import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
-import {UserInfo} from '../../models/UserInfo';
-import {UserService} from '../../services/user-service.service';
-import {ImageService} from "../../services/image-service.service";
-import {Camera, CameraOptions, CameraPopoverOptions} from '@ionic-native/camera/ngx';
+import { Utils } from '../../services/utils.service';
+import { AppSession } from '../../services/app-session.service';
+import { TranslateUtil } from '../../services/translate-util.service';
+import { ToastUtil } from '../../services/toast-util.service';
+import { AppConstants } from '../../services/app-constants.service';
+import { ProvidersService } from '../../services/providers-service.service';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { UserInfo } from '../../models/UserInfo';
+import { UserService } from '../../services/user-service.service';
+import { ImageService } from "../../services/image-service.service";
+import { Camera, CameraOptions, CameraPopoverOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-profile',
@@ -31,77 +31,80 @@ import {Camera, CameraOptions, CameraPopoverOptions} from '@ionic-native/camera/
 })
 export class ProfilePage extends BasicUserIdPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
-  private actionSheet:any;
+  private actionSheet: any;
 
-  public loading:any = null;
-  public isApp:boolean = true;
-  public userInfo:UserInfo;
-  public userId:number;
+  public loading: any = null;
+  public isApp: boolean = true;
+  public userInfo: UserInfo;
+  public userId: number;
 
-  private image_uploads:any;
-  private files_info:string="";
+  private image_uploads: any;
+  private files_info: string = "";
 
-  constructor(public utils:Utils, private navCtrl: NavController, private platform:Platform,
-              public alertCtrl: AlertController, appSession:AppSession, private imageService:ImageService,
-              public translateUtil:TranslateUtil, public toastUtil:ToastUtil, private loadingCtrl:LoadingController,
-              public appConstants:AppConstants, public providerService:ProvidersService,
-              private actionsheetCtrl: ActionSheetController, public userService:UserService,
-              private route: ActivatedRoute, public router:Router, private camera: Camera,) {
-    super(appSession, router, appConstants);
+  constructor(public utils: Utils, private navCtrl: NavController, private platform: Platform,
+    public alertCtrl: AlertController, appSession: AppSession, private imageService: ImageService,
+    public translateUtil: TranslateUtil, public toastUtil: ToastUtil, private loadingCtrl: LoadingController,
+    public appConstants: AppConstants, public providerService: ProvidersService,
+    private actionsheetCtrl: ActionSheetController, public userService: UserService,
+    private route: ActivatedRoute, public router: Router, private camera: Camera,
+    private Router: Router,) {
+    super(appSession, router, appConstants,);
     super.l_checkUserId(true);
 
   }
-
+  goBack() {
+    this.Router.navigate(['available-mountains'])
+  }
   ngOnInit() {
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.userId = this.appSession.l_getUserId();
     this.checkIsApp();
     this.l_updateUser();
   }
 
-  l_initButtons(){
+  l_initButtons() {
     // this.files_info = document.getElementById('files_info');
     this.image_uploads = document.getElementById('image_uploads');
     this.image_uploads.addEventListener("change", (event) => {
-      if(!this.image_uploads || !this.image_uploads.files){
+      if (!this.image_uploads || !this.image_uploads.files) {
         console.log("Can not find image_uploads or empty selection.");
         return;
       }
       let curFiles = this.image_uploads.files;
-      if(curFiles.length === 0) {
+      if (curFiles.length === 0) {
         console.log("Empty selection.");
         this.files_info = "";
-      }else if(curFiles.length === 1){
+      } else if (curFiles.length === 1) {
         let selectedFile = curFiles[0];
         console.log("Selected file: " + selectedFile.name);
         this.files_info = selectedFile.name;
-      }else{
+      } else {
         console.log("Selected number of file: " + curFiles.length);
         this.files_info = curFiles.length + " files";
       }
     });
   }
 
-  l_updateUser(){
+  l_updateUser() {
     console.log("Good l_updateProfile.");
-    this.userService.s_getUserInfoById(this.appSession.l_getUserId(), (userInfo:UserInfo) => {
+    this.userService.s_getUserInfoById(this.appSession.l_getUserId(), (userInfo: UserInfo) => {
       this.appSession.l_setSessionUser(userInfo);
       this.userInfo = userInfo;
     });
   }
 
-  ionViewWillLeave(){
+  ionViewWillLeave() {
     console.log("AddAlbumPage ionViewWillLeave.");
-    if(this.actionSheet){
+    if (this.actionSheet) {
       this.actionSheet.dismiss();
     }
 
-    if(this.loading){
+    if (this.loading) {
       setTimeout(
         () => {
-          if(this.loading){
+          if (this.loading) {
             this.loading.dismiss();
           }
           this.loading = null;
@@ -111,7 +114,7 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
     }
   }
 
-  onClickIcon(){
+  onClickIcon() {
     console.log("Good onClickIcon().");
     this.l_initButtons();
 
@@ -119,21 +122,21 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
   }
 
   async updateImageDisplay() {
-    if(this.isApp){
+    if (this.isApp) {
       console.log("This is app, can not choose by file.");
     }
 
-    if(!this.image_uploads || !this.image_uploads.files){
+    if (!this.image_uploads || !this.image_uploads.files) {
       console.log("Can not find image_uploads or empty selection.");
       return;
     }
 
     console.log("Good updateImageDisplay().");
     let curFiles = this.image_uploads.files;
-    if(curFiles.length === 0) {
+    if (curFiles.length === 0) {
       console.log("Empty selection.");
     } else {
-      for(let i = 0; i < curFiles.length; i++) {
+      for (let i = 0; i < curFiles.length; i++) {
         console.log("File: " + curFiles[i].name);
         // image.src = window.URL.createObjectURL(curFiles[i]);
 
@@ -155,8 +158,8 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
     }
   }
 
-  async showLoading(){
-    if(!this.loading) {
+  async showLoading() {
+    if (!this.loading) {
       this.loading = await this.loadingCtrl.create({
         message: 'Loading...',
         spinner: 'crescent',
@@ -166,28 +169,28 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
     await this.loading.present();
   }
 
-  private uploadImageToServer(base64Content:string){
-    this.imageService.s_uploadProfileImageDevice(this.appSession.l_getUserId(), base64Content, "New Caption", (result:boolean) => {
-      if(result){
+  private uploadImageToServer(base64Content: string) {
+    this.imageService.s_uploadProfileImageDevice(this.appSession.l_getUserId(), base64Content, "New Caption", (result: boolean) => {
+      if (result) {
         this.l_updateUser();
       }
-      if(this.loading){
+      if (this.loading) {
         this.loading.dismiss();
       }
     });
 
     // In case network connection is gone, release the page;
-    this.appSession.subscribeNetwork((connected:boolean) => {
-      if(!connected){
+    this.appSession.subscribeNetwork((connected: boolean) => {
+      if (!connected) {
         console.log("Connection is gone, release page.");
-        if(this.loading){
+        if (this.loading) {
           this.loading.dismiss();
         }
       }
     });
   }
 
-  onEditProfile(){
+  onEditProfile() {
     let navigationExtras: NavigationExtras = {
       state: {
       }
@@ -195,11 +198,11 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
     this.router.navigate(['profile-edit'], navigationExtras);
   }
 
-  onClose(){
+  onClose() {
     this.navCtrl.pop();
   }
 
-  onChangePassword(){
+  onChangePassword() {
     console.log("Good onChangePassword.");
     let navigationExtras: NavigationExtras = {
       state: {
@@ -208,26 +211,26 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
     this.router.navigate(['change-password'], navigationExtras);
   }
 
-  onScrollUp(){
+  onScrollUp() {
     setTimeout(
-        () => {
-          this.content.scrollToTop(300);
-        },
-        10
+      () => {
+        this.content.scrollToTop(300);
+      },
+      10
     );
   }
 
-  public checkIsApp(){
+  public checkIsApp() {
     // console.log(this.platform.platforms());
     // if(this.platform.is('mobile')) {
-    if(this.platform.is('cordova')){
+    if (this.platform.is('cordova')) {
       this.isApp = true;
     } else {
       this.isApp = false;
     }
   }
 
-  onChooseAlbum(){
+  onChooseAlbum() {
     console.log("Good onChooseAlbum().");
     // album
     let navigationExtras: NavigationExtras = {
@@ -238,17 +241,17 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
     this.router.navigate(['album'], navigationExtras);
   }
 
-  onFromLibrary(){
+  onFromLibrary() {
     console.log("onFromLibrary().");
     this.chooseIcon(this.userId, 1);
   }
 
-  onFromCamera(){
+  onFromCamera() {
     console.log("onFromCamera()");
     this.chooseIcon(this.userId, 2);
   }
 
-  async onChooseIcon(){
+  async onChooseIcon() {
     if (typeof Camera === 'undefined' || !this.camera) {
       let mesg = this.translateUtil.translateKey('CAMERA_NOT_AVAILABLE_MESG');
       this.toastUtil.showToast(mesg);
@@ -284,11 +287,11 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
             handler: (data) => {
               console.log("Selected Choose. Data: " + data);
               let userId = this.appSession.l_getUserId();
-              if(data==="camera"){
+              if (data === "camera") {
                 this.chooseIcon(userId, 2);
-              }else if(data==="library"){
+              } else if (data === "library") {
                 this.chooseIcon(userId, 1);
-              }else{
+              } else {
                 this.toastUtil.showToast("CANNOT_FIND_SOURCE" + ": " + data);
               }
             }
@@ -299,7 +302,7 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
     }
   }
 
-  async chooseIcon (userId, optionId) {
+  async chooseIcon(userId, optionId) {
     let sourceType = this.camera.PictureSourceType.PHOTOLIBRARY;
     if (optionId && optionId === 2) {
       sourceType = this.camera.PictureSourceType.CAMERA;
@@ -327,13 +330,13 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
       this.imageService.s_uploadProfileImageDevice(userId, imageData, "New Caption", () => {
         this.l_updateUser();
-        if(this.loading){
+        if (this.loading) {
           this.loading.dismiss();
         }
       });
     }, (err) => {
       // An error occured. Show a message to the user
-      if(this.loading){
+      if (this.loading) {
         this.loading.dismiss();
       }
       console.log("getPicture error: " + err);
@@ -362,26 +365,26 @@ export class ProfilePage extends BasicUserIdPage implements OnInit {
       },
     ];
     buttonList.push(
-        {
-          text: this.translateUtil.translateKey('Album'),
-          handler: () => {
-            console.log('Album clicked');
-            this.onChooseAlbum();
-          }
+      {
+        text: this.translateUtil.translateKey('Album'),
+        handler: () => {
+          console.log('Album clicked');
+          this.onChooseAlbum();
         }
+      }
     );
     buttonList.push(
-        {
-          text: this.translateUtil.translateKey('TERMS'),
-          handler: () => {
-            console.log('Terms clicked');
-            let navigationExtras: NavigationExtras = {
-              state: {
-              }
-            };
-            this.router.navigate(['terms'], navigationExtras);
-          }
+      {
+        text: this.translateUtil.translateKey('TERMS'),
+        handler: () => {
+          console.log('Terms clicked');
+          let navigationExtras: NavigationExtras = {
+            state: {
+            }
+          };
+          this.router.navigate(['terms'], navigationExtras);
         }
+      }
     );
     this.actionSheet = await this.actionsheetCtrl.create({
       cssClass: 'action-sheets-basic-page',

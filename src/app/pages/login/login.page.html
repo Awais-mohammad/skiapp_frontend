@@ -43,7 +43,8 @@
             <ion-list class="line-input">
               <ion-item>
                 <ion-icon slot="start" name="mail-open"></ion-icon>
-                <ion-input placeholder="Enter your email" type="email"></ion-input>
+                <ion-input placeholder="Enter your email" [(ngModel)]="aclUser.email" name="email" #nameRef="ngModel"
+                  required type="email"></ion-input>
               </ion-item>
             </ion-list>
 
@@ -51,7 +52,8 @@
               <ion-item class="i2" no-lines>
 
                 <ion-icon slot="start" name="unlock"></ion-icon>
-                <ion-input placeholder="Enter password" type="{{type}}" name="password" no-lines> </ion-input>
+                <ion-input [(ngModel)]="aclUser.password" name="password" placeholder="Enter password" type="{{type}}"
+                  name="password" no-lines> </ion-input>
                 <ion-icon slot="end" *ngIf="!showPass" fill="clear" type="button" item-right (click)="showPassword()"
                   name="eye" style="font-size: 25px;"></ion-icon>
                 <ion-icon slot="end" *ngIf="showPass" fill="clear" type="button" item-right (click)="showPassword()"
@@ -63,7 +65,7 @@
             </div>
             <ion-button mode='ios' color="none"
               style="border-radius:50px;background-image: linear-gradient(#00BFFF, #87CEEB);" shape="round" fill="solid"
-              size="large" expand="block">LOGIN
+              size="large" expand="block" (click)="onLogin()">LOGIN
               <ion-icon name="arrow-forward"></ion-icon>
             </ion-button>
             <div

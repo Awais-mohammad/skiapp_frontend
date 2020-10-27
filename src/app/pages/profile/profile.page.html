@@ -1,14 +1,141 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{translateUtil.translateKey('MY_PROFILE')}}</ion-title>
-  </ion-toolbar>
+<!--Header-->
+<ion-header no-shadow no-border class="header">
+  <div>
+    <header>
+      <div style="position: relative;top: -1em;">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3">
+              <ion-menu-button color="light"></ion-menu-button>
+            </ion-col>
+            <ion-col size="6">
+              <h1>PROFILE</h1>
+            </ion-col>
+           
+          </ion-row>
+        </ion-grid>
+      </div>
+    </header>
+  </div>
+
 </ion-header>
 
 <ion-content>
-  <ion-list class="listContent">
+
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+
+          <ion-card>
+
+            <ion-card-content>
+
+
+
+              <ion-label>NAME</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+                  <ion-label>{{userInfo?.name}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+              <ion-label>Email</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+                  <ion-label>{{userInfo?.email}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+              <ion-label>Phone</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+
+                  <ion-label>{{userInfo?.phoneNumber}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+              <ion-label>Description</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+
+                  <ion-label>{{userInfo?.description}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+              <ion-label>Age</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+
+                  <ion-label>{{userInfo?.age}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+              <ion-label>WeChatNum</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+
+                  <ion-label>{{userInfo?.weChatNum}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+              <ion-label>Region</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+
+                  <ion-label>{{userInfo?.region}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+              <ion-label>Gender</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+
+                  <ion-label>{{userInfo?.genderName}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+              <ion-label>Favourites</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+
+                  <ion-label>{{userInfo?.favorites}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+              <ion-label>Autobiography</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+
+                  <ion-label>{{userInfo?.skiLevel}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div style=" position: relative;top: -2px;height:1.5em;z-index: 5;
+  background-image: linear-gradient(#87ceeb, #00bfff);
+  border-top-left-radius: 50% 20%;
+  border-top-right-radius: 50% 20%;">
+    
+  </div>
+  <!-- <ion-list class="listContent">
     <ion-item >
       <ion-label>
         <ion-text>
@@ -114,12 +241,7 @@
 
 
   </ion-list>
-  <div class="scroll-content"></div>
+  <div class="scroll-content"></div> -->
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="orange" (click)="openMenu()">
-      {{translateUtil.translateKey("Menu")}}
-    </ion-fab-button>
-  </ion-fab>
 
 </ion-content>
