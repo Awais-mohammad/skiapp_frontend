@@ -1,31 +1,70 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{translateUtil.translateKey('FEEDBACK')}}</ion-title>
-  </ion-toolbar>
+<!--Header-->
+<ion-header no-shadow no-border class="header">
+  <div>
+    <header>
+      <div style="position: relative;top: -1em;">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3">
+              <ion-menu-button color="light"></ion-menu-button>
+            </ion-col>
+            <ion-col size="6">
+              <h1>FEEDBACK</h1>
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+      </div>
+    </header>
+  </div>
+
 </ion-header>
 
 <ion-content>
-  <form class="listContent" #formRef="ngForm" (ngSubmit)="onSubmit(formRef)">
-    <ion-item>
-      <ion-label position="stacked">{{translateUtil.translateKey('TITLE')}}<ion-text color="danger">*</ion-text></ion-label>
-      <ion-input type="text"
-                 [(ngModel)]="feedback.title"
-                 name="title"
-                 #titleRef="ngModel"
-                 required>
-      </ion-input>
-    </ion-item>
-    <ion-item *ngIf="submitted && titleRef.errors?.required">
-      <ion-label color="danger" >{{translateUtil.translateKey('TITLE_REQUIRED_MESG')}}</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">{{translateUtil.translateKey('CONTENT')}}</ion-label>
-      <ion-textarea [(ngModel)]="feedback.content"  name="content"></ion-textarea>
-    </ion-item>
-  </form>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="10" size-sm="10" size-md="7" size-lg="8" size-xl="8" offset="1" offset-lg="2" offset-md="2">
+          <div style="margin-top: 5em;">
+
+            <ion-label style="font-weight:bold;">PROVIDE US YOUR REVIEW</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="TITLE"></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="Desciption"></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <div style="text-align: center;display: flex;align-items: center;justify-content: center;">
+              <ion-label>How do you find us</ion-label>
+              <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" />
+                <label for="star1" title="text">1 star</label>
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
   <div class="scroll-content"></div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -34,3 +73,11 @@
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+<ion-footer>
+
+  <ion-button mode='ios' color="none" style="border-radius:50px;background-image: linear-gradient(#00BFFF, #87CEEB);"
+    shape="round" fill="solid" size="large" expand="block">Submit
+    <ion-icon name="arrow-forward"></ion-icon>
+  </ion-button>
+
+</ion-footer>
