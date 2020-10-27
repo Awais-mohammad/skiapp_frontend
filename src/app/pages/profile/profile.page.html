@@ -11,7 +11,7 @@
             <ion-col size="6">
               <h1>PROFILE</h1>
             </ion-col>
-           
+
           </ion-row>
         </ion-grid>
       </div>
@@ -30,9 +30,16 @@
           <ion-card>
 
             <ion-card-content>
-
-
-
+              <div style="text-align: center;align-items: center;display: flex;justify-content: center;">
+                <ion-avatar>
+                  <img (click)="onFromCamera()"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSRyaDzA30BQo4yHEXO3reOMetKS6slM1Bozw&usqp=CAU"
+                    alt="">
+                  <div style="position: relative;left: 4em;top: -10px;">
+                    <ion-icon (click)="onFromCamera()" color=" primary" ios="ios-camera" md="md-camera"></ion-icon>
+                  </div>
+                </ion-avatar>
+              </div>
               <ion-label>NAME</ion-label>
               <ion-list class="line-input">
                 <ion-item>
@@ -133,7 +140,7 @@
   background-image: linear-gradient(#87ceeb, #00bfff);
   border-top-left-radius: 50% 20%;
   border-top-right-radius: 50% 20%;">
-    
+
   </div>
   <!-- <ion-list class="listContent">
     <ion-item >
