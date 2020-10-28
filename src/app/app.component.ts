@@ -275,13 +275,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy{
           [
             { id:4, title: this.translateUtil.translateKey('My Clubs/Schools'), url: 'MySchools', color:"hasAccountMenu", icon: null, requireAccount:true },
 
-            { id:7, title: this.translateUtil.translateKey('My Registrations'), url: 'MyRegistrations', color:"hasAccountMenu", icon: null, requireAccount:true },
-            { id:8, title: this.translateUtil.translateKey('Profile'), url: 'profile', color:"hasAccountMenu", icon: null, requireAccount:true },
-            { id:9, title: this.translateUtil.translateKey('My Favorites') , url: 'my-favorites', color:"hasAccountMenu", icon: null, requireAccount:true },
-            { id:10, title: this.translateUtil.translateKey('My Questions') , url: 'question-answers', color:"hasAccountMenu", icon: null, requireAccount:true },
-            // { id:11, title: this.translateUtil.translateKey('Comments'), url: 'comments-recent', color:"hasAccountMenu", icon: null, requireAccount:true },
-            { id:12, title: this.translateUtil.translateKey('Feedback'), url: 'feedback', color:"hasAccountMenu", icon: null, requireAccount:true },
-            { id:101, title: this.translateUtil.translateKey('Logout'), url: 'Logout', color:"allMenu", icon: null, requireAccount:true  },
+     { id:7, title:'My Registrations', url: 'MyRegistrations', color:"hasAccountMenu", icon: null, requireAccount:true },
+     { id:8, title: 'Profile', url: 'profile', color:"hasAccountMenu", icon: null, requireAccount:true },
+     { id:9, title: 'My Favorites' , url: 'my-favorites', color:"hasAccountMenu", icon: null, requireAccount:true },
+     { id:10, title:'My Questions' , url: 'question-answers', color:"hasAccountMenu", icon: null, requireAccount:true },
+     // { id:11, title: this.translateUtil.translateKey('Comments'), url: 'comments-recent', color:"hasAccountMenu", icon: null, requireAccount:true },
+     { id:12, title: 'Feedback', url: 'feedback', color:"hasAccountMenu", icon: null, requireAccount:true },
+        { id:101, title:'Logout', url: 'Logout', color:"allMenu", icon: null, requireAccount:true  },
+       
           ]
       );
       if(userInfo.isInstructor){

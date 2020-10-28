@@ -1,0 +1,191 @@
+.bottom-line {
+    border-bottom: 1px solid;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: lightgrey;
+  }
+  @font-face {
+    font-family: "ROBO_LIGHT";
+    src: url("../../../../assets/font/Oswald-Regular.ttf"); //mine
+  }
+  
+  * {
+    font-family: "ROBO_LIGHT";
+  }
+  header {
+    position: relative;
+    height: 70px;
+    background-image: linear-gradient(#87ceeb, #00bfff);
+    border-bottom-left-radius: 50% 20%;
+    border-bottom-right-radius: 50% 20%;
+  }
+  
+  h1 {
+    margin: 0;
+    padding: 100px 0;
+    font: 30px " sans-serif";
+    text-align: center;
+  }
+  
+  header h1 {
+    color: white;
+  }
+  .centre {
+    position: absolute;
+    left: 10%;
+    top: 12%;
+  }
+  
+  ion-header {
+    position: relative;
+    z-index: -1;
+    overflow: hidden;
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    background-image: none !important;
+    border-bottom: none !important;
+  }
+
+ion-avatar {
+  width: 200px;
+  height: 200px;
+}
+.line-input {
+  margin-bottom: 0 !important;
+  ion-item {
+    --border-color: transparent !important;
+    --highlight-height: 0;
+    border: 1px solid black;
+    border-radius: 4px;
+
+    &.item-has-focus {
+      border: 1px solid var(--ion-color-primary);
+    }
+
+    ion-label {
+      color: #807e7e !important;
+      font-weight: 300;
+      font-size: 1rem !important;
+    }
+  }
+}
+@font-face {
+  font-family: "ROBO_LIGHT";
+  src: url("../../../../assets/font/Oswald-Regular.ttf"); //mine
+}
+
+* {
+  font-family: "ROBO_LIGHT";
+}
+
+  #main {
+    margin: auto;
+    width: 100%;
+  }
+  
+  #sidebar {
+    width: 150px;
+   
+    float: left;
+  }
+  
+  #page-wrap {
+    width: 200px;
+   
+    float: left;
+  }
+  
+  .clear:after {
+    clear: both;
+    display: table;
+    content: "";
+  }
+  ion-item {
+  
+    --border-width: 0;
+    --inner-border-width: 0;
+    --ion-background-color:transparent;
+  }
+  
+  .bg-class{
+    box-shadow: none !important;
+   // --background: linear-gradient(197deg, rgb(77, 15, 15) 0%, rgba(63,63,63,1) 13.5%, rgba(29,29,29,1) 33.33%, rgba(0,0,0,1) 100%) !important;
+  }.bottom-line {
+    border-bottom: 1px solid;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: lightgrey;
+  }
+  @font-face {
+    font-family: "ROBO_LIGHT";
+    src: url("../../../../assets/font/Oswald-Regular.ttf"); //mine
+  }
+  
+  * {
+    font-family: "ROBO_LIGHT";
+  }
+  header {
+    position: relative;
+    height: 70px;
+    background-image: linear-gradient(#87ceeb, #00bfff);
+    border-bottom-left-radius: 50% 20%;
+    border-bottom-right-radius: 50% 20%;
+  }
+  
+  h1 {
+    margin: 0;
+    padding: 100px 0;
+    font: 30px " sans-serif";
+    text-align: center;
+  }
+  
+  header h1 {
+    color: white;
+  }
+  .centre {
+    position: absolute;
+    left: 10%;
+    top: 12%;
+  }
+  
+  ion-header {
+    position: relative;
+    z-index: -1;
+    overflow: hidden;
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    border-bottom: none !important;
+  }
+  #main {
+    margin: auto;
+    width: 100%;
+  }
+  
+  #sidebar {
+    width: 150px;
+   
+    float: left;
+  }
+  
+  #page-wrap {
+    width: 200px;
+   
+    float: left;
+  }
+  
+  .clear:after {
+    clear: both;
+    display: table;
+    content: "";
+  }
+  ion-item {
+  
+    --border-width: 0;
+    --inner-border-width: 0;
+    --ion-background-color:transparent;
+  }
+  
+  .bg-class{
+  //  box-shadow: none !important;
+    --background: linear-gradient(197deg, rgb(77, 15, 15) 0%, rgba(63,63,63,1) 13.5%, rgba(29,29,29,1) 33.33%, rgba(0,0,0,1) 100%) !important;
+  }
