@@ -5,3 +5,43 @@
   margin-right: 10px;
   color: lightgrey;
 }
+@font-face {
+  font-family: "ROBO_LIGHT";
+  src: url("../../../../assets/font/Oswald-Regular.ttf"); //mine
+}
+
+* {
+  font-family: "ROBO_LIGHT";
+}
+header {
+  position: relative;
+  height: 70px;
+  background-image: linear-gradient(#87ceeb, #00bfff);
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+}
+
+h1 {
+  margin: 0;
+  padding: 100px 0;
+  font: 30px " sans-serif";
+  text-align: center;
+}
+
+header h1 {
+  color: white;
+}
+.centre {
+  position: absolute;
+  left: 10%;
+  top: 12%;
+}
+
+ion-header {
+  position: relative;
+  z-index: -1;
+  overflow: hidden;
+  border: 0px !important;
+  border-bottom-color: transparent !important;
+  border-bottom: none !important;
+}

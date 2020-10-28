@@ -174,6 +174,8 @@ export class AvailableMountainsPage implements OnInit {
   toggleSearchBar(){
     this.showSearchBar = !this.showSearchBar;
     this.focusButton();
+    console.log("clicked");
+    
     //this.checkSearchBarTimeout();;
   }
 
