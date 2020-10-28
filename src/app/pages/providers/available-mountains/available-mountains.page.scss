@@ -1,5 +1,4 @@
-
-.bottom-line{
+.bottom-line {
   border-bottom: 1px solid;
   margin-left: 10px;
   margin-right: 10px;
@@ -44,4 +43,37 @@ ion-header {
   border: 0px !important;
   border-bottom-color: transparent !important;
   border-bottom: none !important;
+}
+#main {
+  margin: auto;
+  width: 100%;
+}
+
+#sidebar {
+  width: 150px;
+ 
+  float: left;
+}
+
+#page-wrap {
+  width: 200px;
+ 
+  float: left;
+}
+
+.clear:after {
+  clear: both;
+  display: table;
+  content: "";
+}
+ion-item {
+
+  --border-width: 0;
+  --inner-border-width: 0;
+  --ion-background-color:transparent;
+}
+
+.bg-class{
+  box-shadow: none !important;
+ // --background: linear-gradient(197deg, rgb(77, 15, 15) 0%, rgba(63,63,63,1) 13.5%, rgba(29,29,29,1) 33.33%, rgba(0,0,0,1) 100%) !important;
 }
