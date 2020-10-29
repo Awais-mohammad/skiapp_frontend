@@ -1,29 +1,68 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
     </ion-buttons>
     <ion-title>{{(appConstants.beta?"BETA ":"")}}{{translateUtil.translateKey('Upcoming Trips')}}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
+
+<ion-header class="header">
+
+  <header>
+    <div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            <ion-back-button color="light" defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
+          </ion-col>
+          <ion-col size="9" style="display: flex;text-align: center;align-items: center;">
+            <ion-label style="font-size: 31px;color: white;font-weight: bold;">UPCOMMING TRIPS</ion-label>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </div>
+  </header>
+</ion-header>
 <ion-content>
-  <ion-card *ngFor="let trip of trips">
+
+  <div style="padding: 2em;">
+    <ion-label
+      style="font-family: Kaushan Script;display: flex;text-align: center;justify-content: center;align-items: center;font-size: 2em;">
+      UPCOMING TRIPS</ion-label>
+  </div>
+
+  <ion-card style="padding:4px" *ngFor="let trip of trips">
     <ion-card-header>
-      <ion-card-title>{{trip?.title}}</ion-card-title>
-      <ion-card-subtitle *ngIf="trip?.tripHillName">Organized Trip Destination: {{trip?.tripHillName}}</ion-card-subtitle>
+      <ion-card-title style="display: flex;text-align: center;align-items: center;justify-content: center;">
+        {{trip?.title}}</ion-card-title>
+      <ion-card-subtitle *ngIf="trip?.tripHillName">Organized Trip Destination: {{trip?.tripHillName}}
+      </ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
       <p *ngIf="trip?.time">Date: {{utils.formatDateOnlyWithWeek(trip?.time)}}</p>
       <p *ngIf="trip?.deadLine">Registration deadline: {{utils.formatDate(trip?.deadLine)}}</p>
-      <p *ngIf="showAdminFunction()"><ion-text color="orange">Total: {{getTotalTicketCount(trip)}}</ion-text></p>
-      <p *ngIf="showAdminFunction()"><ion-text color="orange">Enabled: {{utils.getYesNo(trip?.enabled)}}</ion-text></p>
+      <p *ngIf="showAdminFunction()">
+        <ion-text color="orange">Total: {{getTotalTicketCount(trip)}}</ion-text>
+      </p>
+      <p *ngIf="showAdminFunction()">
+        <ion-text color="orange">Enabled: {{utils.getYesNo(trip?.enabled)}}</ion-text>
+      </p>
     </ion-card-content>
-    <ion-item>
-      <ion-button slot="start" size="small" (click)="onViewDetails(trip)"> {{translateUtil.translateKey('Trip Details')}}</ion-button>
-      <ion-button slot="start" size="small" (click)="showChooseCoursePopup(trip)"> {{translateUtil.translateKey('Lessons')}}</ion-button>
-    </ion-item>
+    <div style="display: flex;justify-content: space-between;">
+
+      <ion-button block color="success" expand="large" mode='ios' (click)="onViewDetails(trip)">
+        <ion-icon color="light" name="eye"></ion-icon>
+        {{translateUtil.translateKey('Trip Details')}}
+      </ion-button>
+      <ion-button block color="success" expand="large" mode='ios' (click)="showChooseCoursePopup(trip)">
+        <ion-icon color="light" name="eye"></ion-icon>
+        {{translateUtil.translateKey('Lessons')}}
+      </ion-button>
+    </div>
   </ion-card>
   <div class="scroll-content"></div>
 
