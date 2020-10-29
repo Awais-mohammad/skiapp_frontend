@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{provider?.name}}</ion-title>
+    <ion-title>{{provider?.name}}</ion-title>
     <ion-buttons *ngIf="appSession.l_getUserId() && providerId" slot="end">
       <ion-button slot="icon-only" (click)="presentPopover($event)" >
         <ion-icon name="more"></ion-icon>

@@ -275,7 +275,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy{
           [
             { id:4, title: this.translateUtil.translateKey('My Clubs/Schools'), url: 'MySchools', color:"hasAccountMenu", icon: null, requireAccount:true },
 
-     { id:7, title:'My Registrations', url: 'MyRegistrations', color:"hasAccountMenu", icon: null, requireAccount:true },
+     { id:7, title:'My Registrations', url: 'course-package-registrations', color:"hasAccountMenu", icon: null, requireAccount:true },
      { id:8, title: 'Profile', url: 'profile', color:"hasAccountMenu", icon: null, requireAccount:true },
      { id:9, title: 'My Favorites' , url: 'my-favorites', color:"hasAccountMenu", icon: null, requireAccount:true },
      { id:10, title:'My Questions' , url: 'question-answers', color:"hasAccountMenu", icon: null, requireAccount:true },
