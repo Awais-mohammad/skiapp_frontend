@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{(appConstants.beta?"BETA ":"")}}{{translateUtil.translateKey('Programs/Lessons')}}</ion-title>
+    <ion-title>{{translateUtil.translateKey('Programs/Lessons')}}</ion-title>
     <ion-buttons slot="end">
       <ion-button slot="start" (click)="toggleSearchBar()">
         <ion-icon name="search"></ion-icon>
