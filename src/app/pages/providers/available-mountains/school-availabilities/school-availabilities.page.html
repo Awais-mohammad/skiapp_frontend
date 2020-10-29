@@ -1,14 +1,96 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
     </ion-buttons>
     <ion-title>School/Club Provides</ion-title>
   </ion-toolbar>
+</ion-header> -->
+
+
+<ion-header no-shadow no-border class="header">
+
+  <header>
+    <div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            <ion-back-button color="light" defaultHref="{{appConstants.ROOT_PAGE}}"></ion-back-button>
+          </ion-col>
+          <ion-col size="6" style="display: flex;text-align: center;align-items: center;">
+            <ion-label style="font-size: 31px;color: white;font-weight: bold;">Schools</ion-label>
+          </ion-col>
+
+
+        </ion-row>
+      </ion-grid>
+    </div>
+  </header>
+
+
+
 </ion-header>
 
 <ion-content>
-  <div *ngIf="provider">
+
+  <div
+    style="color:black;font-family: 'Kaushan Script', cursive;font-size: 43px;text-align: center;display: flex;align-items: centre;justify-content: centre;padding: 10px;">
+
+    {{(provider)?.name}}
+  </div>
+  <div  style="text-align: center;color: black;">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum facilis ullam fuga magni. Maiores delectus ratione
+    dicta necessitatibus! Totam, labore!
+  </div>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="6" size-lg="6" size-sm="6" size-xs="6" size-xl="4">
+          <ion-card (click)="onViewPackages()" class="bg-class">
+
+            <ion-card-content>
+              <ion-icon color="lightOrange" name="briefcase"></ion-icon>
+              {{translateUtil.translateKey("Course packages")}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size-md="6" size-lg="6" size-sm="6" size-xs="6" size-xl="4">
+          <ion-card (click)="onViewTripEvents()" class="bg-class">
+
+
+            <ion-card-content>
+              <ion-icon color="lightOrange" name="navigate"></ion-icon>
+              {{translateUtil.translateKey("Upcoming Trips")}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size-md="6" size-lg="6" size-sm="6" size-xs="6" size-xl="4">
+          <ion-card (click)="onViewAvailablePrograms()" class="bg-class">
+
+            <ion-card-content>
+              <ion-icon color="lightOrange" name="apps"></ion-icon>
+              {{translateUtil.translateKey("Programs")}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size-md="6" size-lg="6" size-sm="6" size-xs="6" size-xl="4">
+          <ion-card (click)="onViewInstructors()" class="bg-class">
+
+            <ion-card-content>
+              <ion-icon color="lightOrange" name="contacts"></ion-icon>
+              {{translateUtil.translateKey("Available Instructors")}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- <div *ngIf="provider">
     <div class="game-image" style="margin-bottom: 10px;">
       <ion-img *ngIf="provider?.iconFullUrl" [src]="provider?.iconFullUrl"></ion-img>
     </div>
@@ -35,19 +117,19 @@
 
     <div padding text-center>
       <ion-button *ngIf="provider?.enableTripEvent" color="primary" strong="true" (click)="onViewTripEvents()">
-        <ion-icon color="lightOrange" name="navigate" ></ion-icon>
+        <ion-icon color="lightOrange" name="navigate"></ion-icon>
         {{translateUtil.translateKey("Upcoming Trips")}}
       </ion-button>
       <ion-button color="primary" strong="true" (click)="onViewPackages()">
-        <ion-icon color="lightOrange" name="briefcase" ></ion-icon>
+        <ion-icon color="lightOrange" name="briefcase"></ion-icon>
         {{translateUtil.translateKey("Course packages")}}
       </ion-button>
       <ion-button *ngIf="provider?.enablePrograms" color="primary" strong="true" (click)="onViewAvailablePrograms()">
-        <ion-icon color="lightOrange" name="apps" ></ion-icon>
+        <ion-icon color="lightOrange" name="apps"></ion-icon>
         {{translateUtil.translateKey("Programs")}}
       </ion-button>
       <ion-button *ngIf="provider?.enableInstructors" color="primary" strong="true" (click)="onViewInstructors()">
-        <ion-icon color="lightOrange" name="contacts" ></ion-icon>
+        <ion-icon color="lightOrange" name="contacts"></ion-icon>
         {{translateUtil.translateKey("Available Instructors")}}
       </ion-button>
     </div>
@@ -58,9 +140,9 @@
     <ion-fab-button color="orange" (click)="openMenu()">
       {{translateUtil.translateKey("Menu")}}
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
 
   <!--<ion-fab bottom right>-->
-    <!--<button ion-fab class="fabButton" (click)="openMenu()">{{translateUtil.translateKey("Menu")}}</button>-->
+  <!--<button ion-fab class="fabButton" (click)="openMenu()">{{translateUtil.translateKey("Menu")}}</button>-->
   <!--</ion-fab>-->
 </ion-content>
